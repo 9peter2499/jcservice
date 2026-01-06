@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock-In System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-lg flex flex-col">
+        <div class="p-6 text-center border-b">
+            <img id="companyLogo" src="https://via.placeholder.com/150x50?text=Logo" alt="Logo" class="mx-auto h-12 mb-2">
+            <h1 id="userName" class="text-lg font-bold text-gray-800">กำลังโหลดชื่อพนักงาน...</h1>
+            <p id="workShift" class="text-sm text-blue-600 font-medium italic">กะการทำงาน: --:--</p>
+        </div>
+
+        <div class="p-6 flex-grow">
+            <div id="locationStatus" class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg mb-4 text-xs text-yellow-700">
+                📍 กำลังตรวจสอบพิกัด...
+            </div>
+
+            <div class="text-center my-6">
+                <p class="text-sm text-gray-500 uppercase tracking-widest">เวลาปัจจุบัน</p>
+                <h2 id="currentTime" class="text-5xl font-mono font-bold text-gray-900">00:00:00</h2>
+            </div>
+
+            <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-inner mb-6">
+                <video id="video" class="w-full h-full object-cover" autoplay playsinline></video>
+                <canvas id="canvas" class="hidden"></canvas>
+                <img id="photoPreview" class="hidden w-full h-full object-cover">
+                <div class="absolute bottom-2 right-2 bg-red-600 text-white text-[10px] px-2 py-1 rounded">LIVE</div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button id="btnIn" onclick="handleClockAction('IN')" class="bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold shadow-lg transition-all active:scale-95">
+                    CLOCK IN
+                </button>
+                <button id="btnOut" onclick="handleClockAction('OUT')" class="bg-red-600 hover:bg-red-700 text-white py-4 rounded-2xl font-bold shadow-lg transition-all active:scale-95">
+                    CLOCK OUT
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 border-t text-center text-xs text-gray-500 bg-gray-50">
+            <a href="index.html" class="py-3 border-b-2 border-blue-600 text-blue-600 font-bold">ลงเวลา</a>
+            <a href="history.html" class="py-3 hover:bg-gray-100">ประวัติ</a>
+            <a href="report.html" class="py-3 hover:bg-gray-100">รายงาน</a>
+        </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
