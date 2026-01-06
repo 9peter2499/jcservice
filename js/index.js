@@ -139,6 +139,22 @@ function getLocation() {
     }
 }
 
+// ฟังก์ชันแปลงพิกัดเป็นชื่อสถานที่ (Reverse Geocoding)
+async function getAddressFromCoords(lat, lng) {
+    try {
+        // เรียกใช้ API ของ OpenStreetMap (ฟรี)
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&accept-language=th`);
+        const data = await response.json();
+        
+        // ส่งกลับชื่อสถานที่แบบเต็ม
+        // ถ้าอยากได้สั้นๆ ให้เลือก data.address.road หรือ data.address.suburb แทนได้ครับ
+        return data.display_name || "ไม่พบชื่อสถานที่";
+    } catch (error) {
+        console.error("Error fetching address:", error);
+        return "ไม่สามารถระบุที่อยู่ได้";
+    }
+}
+
 // 5. ฟังก์ชัน Upload รูปไป Supabase Storage
 async function uploadToSupabase(base64Image) {
     const fileName = `${userData.userId}_${Date.now()}.jpg`;
